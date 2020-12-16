@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<style>
+	html {height: 100%; font-family: whitney;}
+	@font-face {
+		font-family: whitney;
+		src: url('whitneylight.ttf');
+	}
+	body {
+		font-size: 20px;
+		background-image:url('bg.png');
+		background-position: center;
+		background-size: cover;
+		margin: 0px;
+		height: 100%;
+		backdrop-filter: blur(10px);
+		color:white;
+	}
+	#main {
+		padding: 10px;
+		background-color: rgba(0,0,0,0.3);
+		width: 20%;
+		border-radius: 10px;
+	}
+	</style>
+	<script>
+		var attempts = 1; // times run
+		var pearls = 0; // pearls gotten in each run
+		var total = 0; // total amount of pearls, kept for average
+		var average = 0; // average duh
+		var record = 0; // highest pearl count
+		
+		/* SPEEDY ZOOP KACHOW
+		setInterval(function () {
+			for (var x = 0; x < 2500; x++) {
+				thing();
+			}
+		}, 0); */
+		
+		function thing() {
+		  pearls = 0;
+		  i = 0;
+		  
+		  while (i < 263) { // dream traded 263 times on stream
+		    if ((Math.floor(Math.random() * 10000) + 1) < 473) { // 4.73% chance to get pearls
+		      pearls++;
+		    } i++;
+		  }
+		  total += pearls;
+		  average = total/attempts;
+		  if (pearls > record) {record = pearls;}
+		  
+		  document.getElementById("thingy").innerHTML = '' // this is probably inefficient oh well
+		  document.getElementById("thingy").innerHTML += ("attempt #" + attempts);
+		  document.getElementById("thingy").innerHTML += ("<br>pearls: " + pearls);
+		  document.getElementById("thingy").innerHTML += ("<br><br>average: " + average.toFixed(2));
+		  document.getElementById("thingy").innerHTML += ("<br>highest: " + record);
+		  attempts++;
+		}
+		
+		var thingInterval = setInterval(function(){thing();}, 10); // slow setinterval so i dont kill someones pc
+		
+		/* speed change thingy
+		<input type="range" min="0" max="100" value="0" class="slider" id="speed" onchange='changespeed(this.value);'>
+		function changespeed(slideAmount) {
+			clearInterval(thingInterval);
+			thingInterval = setInterval(function(){thing();}, 100 - slideAmount);
+			console.log(100 - slideAmount);
+		} */
+	</script>
+	<center>
+	<br>
+		<div id='main'>
+			<p style='font-size: 25px;'><b>did dream cheat?</b></p>
+			<div id='thingy'></div>
+			<br>dream: 41<br><br>
+		</div>
+	</center>
+</html>
